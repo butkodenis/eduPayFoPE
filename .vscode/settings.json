@@ -1,0 +1,21 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "192.168.0.16",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "edbo",
+      "database": "edbo",
+      "username": "admin",
+      "password": "123456"
+    },
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "driver": "PostgreSQL",
+      "name": "fpo-elefant",
+      "connectString": "postgres://xljuldtf:ZJ4YlNIJ3vaD8gjRQsytobithNCsRM3i@dumbo.db.elephantsql.com/xljuldtf"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: dockerfile.dev
+    container_name: ${APP_NAME}-api
+    env_file: .env
+    ports:
+      # local->container
+      - $NODE_PORT:$NODE_PORT
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - TZ=Europe/Kiev
+    networks:
+      - pern-network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: dockerfile.dev
+    container_name: ${APP_NAME}-client
+    stdin_open: true
+    tty: true
+    env_file: .env
+    ports:
+      # local->container
+      - '5173:5173'
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - TZ=Europe/Kiev
+    depends_on:
+      - server
+
+    networks:
+      - pern-network
+
+networks:
+  pern-network:
+    driver: bridge
