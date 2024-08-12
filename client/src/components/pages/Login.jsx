@@ -9,7 +9,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/login`,
+        `http://localhost:4000/api/auth/login`,
         data
       );
       console.log(response.data); // Обработка ответа от сервера
