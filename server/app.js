@@ -17,6 +17,7 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api', require('./Routers/userRouter'));
+app.use('/api', require('./Routers/authRoutes'));
 
 app.listen(NODE_PORT, () => {
   console.log(`Сервер запущен на порту ${NODE_PORT}`);
