@@ -26,11 +26,9 @@ const Login = () => {
             alignItems: 'center',
             padding: 4,
             backgroundColor: 'white',
-            borderRadius: 2,
-            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
           }}
         >
-          <h3>Увійти</h3>
+          <h3>Увійти до системи</h3>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
