@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Box, Container, TextField, Button, Avatar } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -5,8 +6,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 const Login = () => {
   const { handleSubmit, control } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data); // Здесь можно будет обрабатывать данные
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/login`,
+        data
+      );
+      console.log(response.data); // Обработка ответа от сервера
+    } catch (error) {
+      console.error('Ошибка при отправке данных на сервер:', error);
+    }
   };
 
   return (
