@@ -40,4 +40,14 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { login };
+const logout = async (req, res) => {
+  try {
+    res.clearCookie('token');
+    res.status(200).json({ message: 'Успішний вихід' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { login, logout };

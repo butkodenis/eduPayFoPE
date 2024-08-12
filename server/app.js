@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const Users = require('./Model/Users'); // Подключение модели пользователя
@@ -10,6 +11,7 @@ const sequelize = require('./DB/db'); // Подключение к базе да
 const { NODE_PORT, VITE_BASE_URL } = process.env;
 
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 app.get('/api', (req, res) => {

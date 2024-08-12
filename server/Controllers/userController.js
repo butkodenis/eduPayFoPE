@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs');
 const getUser = async (req, res) => {
   try {
     const { id } = req.params;
-    res.status(200).json({ message: 'Успішна аутентифікація користувача' });
+
+    res.status(200).json({ message: 'Інформація користувача' });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: error.message });
