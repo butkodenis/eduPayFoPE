@@ -2,6 +2,8 @@ import axios from 'axios';
 import { Box, Container, TextField, Button, Avatar } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const { handleSubmit, control } = useForm();
@@ -15,9 +17,11 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data); // Обработка ответа от сервера
+      toast.success(response.data.message); // Успешное уведомление
     } catch (error) {
-      console.error('Ошибка при отправке данных на сервер:', error);
+      toast.error(
+        error.response?.data?.message || 'Ошибка при отправке данных на сервер'
+      ); // Ошибка уведомления
     }
   };
 
@@ -97,6 +101,7 @@ const Login = () => {
           </form>
         </Box>
       </Container>
+      <ToastContainer /> {/* Контейнер для отображения уведомлений */}
     </Box>
   );
 };
