@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Box, Container, TextField, Button, Avatar } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -7,17 +8,20 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const { handleSubmit, control } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/auth/login`,
+        `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
         data,
         {
           withCredentials: true,
         }
       );
       toast.success(response.data.message); // Успешное уведомление
+      console.log(response.data);
+      navigate('/'); // Переход на главную страницу
     } catch (error) {
       toast.error(
         error.response?.data?.message || 'Ошибка при отправке данных на сервер'
