@@ -10,7 +10,10 @@ const Login = () => {
     try {
       const response = await axios.post(
         `http://localhost:4000/api/auth/login`,
-        data
+        data,
+        {
+          withCredentials: true,
+        }
       );
       console.log(response.data); // Обработка ответа от сервера
     } catch (error) {
