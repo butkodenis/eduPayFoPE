@@ -10,7 +10,12 @@ const sequelize = require('./DB/db'); // Подключение к базе да
 
 const { NODE_PORT, VITE_BASE_URL } = process.env;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // Укажите origin, откуда вы делаете запросы
+    credentials: true, // Включите передачу cookies или других учетных данных
+  }),
+);
 app.use(cookieParser());
 app.use(express.json());
 
