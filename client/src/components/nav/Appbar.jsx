@@ -58,7 +58,10 @@ const Appbar = () => {
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Button color="inherit">Home</Button>
           </Link>
-          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link
+            to="/institute"
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
             <Button color="inherit">Institute</Button>
           </Link>
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
