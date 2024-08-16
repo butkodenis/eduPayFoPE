@@ -8,8 +8,13 @@ const Layout = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <Appbar />
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Sidebar />
+      </Box>
 
-      <Outlet />
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Outlet />
+      </Box>
     </Box>
   );
 };
