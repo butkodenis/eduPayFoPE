@@ -12,7 +12,7 @@ const { NODE_PORT, VITE_BASE_URL } = process.env;
 
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Укажите origin, откуда вы делаете запросы
+    origin: 'http://127.0.0.1:5173', // Укажите origin, откуда вы делаете запросы
     credentials: true, // Включите передачу cookies или других учетных данных
   }),
 );
