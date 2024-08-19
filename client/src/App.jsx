@@ -21,9 +21,18 @@ function App() {
               path="/students"
               element={<PrivateRoute element={<Students />} />}
             />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/balance" element={<Balance />} />
-            <Route path="/payments" element={<Payments />} />
+            <Route
+              path="/courses"
+              element={<PrivateRoute element={<Courses />} />}
+            />
+            <Route
+              path="/balance"
+              element={<PrivateRoute element={<Balance />} />}
+            />
+            <Route
+              path="/payments"
+              element={<PrivateRoute element={<Payments />} />}
+            />
           </Route>
           <Route path="/login" element={<Login />} />
         </Routes>

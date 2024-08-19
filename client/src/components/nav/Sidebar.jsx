@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+
 import {
   Box,
   Button,
@@ -21,12 +24,28 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
-  const handleLogout = () => {
-    // Логика выхода
-    console.log('Logout');
+  const navigate = useNavigate();
+
+  const clearCookies = () => {
+    // Удаление всех куков
+    Object.keys(Cookies.get()).forEach((cookieName) => {
+      Cookies.remove(cookieName);
+    });
+  };
+
+  const handleLogout = async () => {
+    try {
+      await axios.get(`${import.meta.env.VITE_BASE_URL}/api/auth/logout`); // Отправка POST запроса на сервер для выхода
+      clearCookies(); // Удаление куков
+
+      navigate('/login'); // Перенаправление на страницу входа
+    } catch (error) {
+      console.error('Error during logout:', error);
+      // Обработка ошибок, например, показать уведомление
+    }
   };
 
   return (
@@ -44,23 +63,12 @@ const Sidebar = () => {
         }}
       >
         <Box sx={{ my: 4, textAlign: 'center' }}>
-          <Typography variant="body1">Welcome to the sidebar!</Typography>
+          <Typography variant="body1">
+            {' '}
+            Запорізький державний медико-фармацевтичний університет
+          </Typography>
         </Box>
-        <Accordion>
-          <AccordionSummary>
-            <Typography>Інститут</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <List>
-              <ListItem button component={Link} to="/students">
-                <ListItemText primary="Студенти" />
-              </ListItem>
-              <ListItem button component={Link} to="/courses">
-                <ListItemText primary="Курси" />
-              </ListItem>
-            </List>
-          </AccordionDetails>
-        </Accordion>
+
         <List>
           <ListItem button component={Link} to="/">
             <ListItemIcon>
