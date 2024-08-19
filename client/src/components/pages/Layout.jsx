@@ -7,14 +7,9 @@ import Sidebar from '../nav/Sidebar';
 const Layout = () => {
   return (
     <Box sx={{ display: 'flex' }}>
-      <Appbar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Sidebar />
-      </Box>
+      <Sidebar />
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Outlet />
-      </Box>
+      <Outlet />
     </Box>
   );
 };
