@@ -3,7 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Layout from './components/pages/Layout';
 import Home from './components/pages/Home';
-import Institute from './components/pages/Institute';
+import Students from './components/pages/Students';
+import Courses from './components/pages/Сourses';
+import Balance from './components/pages/Balance';
+import Payments from './components/pages/Payments';
 import Login from './components/pages/Login';
 import PrivateRoute from './components/pages/PrivateRoute';
 
@@ -14,7 +17,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<PrivateRoute element={<Home />} />} />
-            <Route path="/institute" element={<Institute />} />
+            <Route
+              path="/students"
+              element={<PrivateRoute element={<Students />} />}
+            />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/balance" element={<Balance />} />
+            <Route path="/payments" element={<Payments />} />
           </Route>
           <Route path="/login" element={<Login />} />
         </Routes>
