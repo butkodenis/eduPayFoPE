@@ -8,6 +8,7 @@ import Courses from './components/pages/Сourses';
 import Balance from './components/pages/Balance';
 import Payments from './components/pages/Payments';
 import Company from './components/pages/Company';
+import Contracts from './components/pages/Contracts';
 import Login from './components/pages/Login';
 import PrivateRoute from './components/pages/PrivateRoute';
 
@@ -37,6 +38,10 @@ function App() {
             <Route
               path="/company"
               element={<PrivateRoute element={<Company />} />}
+            />
+            <Route
+              path="/contract"
+              element={<PrivateRoute element={<Contracts />} />}
             />
           </Route>
           <Route path="/login" element={<Login />} />

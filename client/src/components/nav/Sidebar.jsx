@@ -24,6 +24,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import ArticleIcon from '@mui/icons-material/Article';
 
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -95,6 +96,13 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Юр. лица" />
           </ListItem>
+          <ListItem button component={Link} to="/contract">
+            <ListItemIcon>
+              <ArticleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Договоры" />
+          </ListItem>
+
           <Divider />
           <ListItem button component={Link} to="/balance">
             <ListItemIcon>
