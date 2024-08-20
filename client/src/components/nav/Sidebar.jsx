@@ -23,6 +23,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PaymentIcon from '@mui/icons-material/Payment';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -87,6 +88,12 @@ const Sidebar = () => {
               <MenuBookIcon />
             </ListItemIcon>
             <ListItemText primary="Курси" />
+          </ListItem>
+          <ListItem button component={Link} to="/company">
+            <ListItemIcon>
+              <ApartmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Юр. лица" />
           </ListItem>
           <Divider />
           <ListItem button component={Link} to="/balance">
