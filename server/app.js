@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const Users = require('./Model/Users'); // Подключение модели пользователя
+const Course = require('./Model/Courses'); // Подключение модели курса
 
 const sequelize = require('./DB/db'); // Подключение к базе данных
 
@@ -25,6 +26,7 @@ app.get('/api', (req, res) => {
 
 app.use('/api', require('./Routers/userRouter'));
 app.use('/api', require('./Routers/authRoutes'));
+app.use('/api', require('./Routers/courseRouter'));
 
 app.listen(NODE_PORT, () => {
   console.log(`Сервер запущен на порту ${NODE_PORT}`);
