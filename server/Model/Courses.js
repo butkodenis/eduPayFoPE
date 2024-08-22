@@ -11,40 +11,32 @@ const Course = sequelize.define(
     },
     typeCourse: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     duration: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     price: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
+      type: DataTypes.INTEGER,
     },
     points: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     department: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     date_start: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
     },
     date_end: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
     },
   },
   {
     tableName: 'courses',
-    timestamps: true,
+    timestamps: false,
   },
 );
 
