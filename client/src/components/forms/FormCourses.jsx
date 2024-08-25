@@ -1,62 +1,47 @@
-import { Box, TextField, Button } from '@mui/material';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Button } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-const FormCourses = () => {
-  const { handleSubmit, control } = useForm();
+export default function FormCourses() {
+  const { handleSubmit, control } = useForm({
+    defaultValues: {
+      age: '',
+    },
+  });
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     console.log(data);
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: 600,
-        padding: 4,
-        backgroundColor: 'white',
-      }}
-    >
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Controller
-          name="courseCode"
+          name="age"
           control={control}
-          defaultValue=""
           render={({ field }) => (
-            <TextField
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
               {...field}
-              label="Course Code"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
+              label="Age"
+            >
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
           )}
         />
-        <Controller
-          name="courseDescription"
-          control={control}
-          defaultValue=""
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Course Description"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
-          )}
-        />
-        <Button type="submit" variant="contained" color="primary">
+        <Button variant="contained" color="primary" type="submit">
           Add Course
         </Button>
-      </form>
-      <ToastContainer />
+      </FormControl>
     </Box>
   );
-};
-
-export default FormCourses;
+}

@@ -1,18 +1,29 @@
 import { useState } from 'react';
-import { Typography, Box, Button, Modal, TextField } from '@mui/material';
+import {
+  Typography,
+  Box,
+  Button,
+  FormControl,
+  Modal,
+  TextField,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import FormCourses from '../forms/FormCourses';
 
 const Courses = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { handleSubmit, control } = useForm();
-
   const onSubmit = async (data) => {
     console.log(data);
+    handleClose();
   };
 
   return (
@@ -27,6 +38,10 @@ const Courses = () => {
       <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -35,39 +50,7 @@ const Courses = () => {
             backgroundColor: 'white',
           }}
         >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Controller
-              name="courseCode"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Course Code"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                />
-              )}
-            />
-            <Controller
-              name="courseDescription"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Course Description"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                />
-              )}
-            />
-            <Button type="submit" variant="contained" color="primary">
-              Add Course
-            </Button>
-          </form>
+          <FormCourses />
           <ToastContainer />
         </Box>
       </Modal>
