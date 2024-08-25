@@ -14,7 +14,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import FormCourses from '../forms/FormCourses';
+import FormCreateCourses from '../forms/FormCreateCourses';
 
 const Courses = () => {
   const [open, setOpen] = useState(false);
@@ -50,7 +50,7 @@ const Courses = () => {
             backgroundColor: 'white',
           }}
         >
-          <FormCourses />
+          <FormCreateCourses handleClose={handleClose} />
           <ToastContainer />
         </Box>
       </Modal>
