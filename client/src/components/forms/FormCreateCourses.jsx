@@ -121,13 +121,26 @@ export default function FormCreateCourses({ handleClose }) {
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <TextField
-              {...field}
-              label="Кафедра"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
+            <FormControl variant="outlined" fullWidth margin="normal">
+              <InputLabel id="courseDepartment">Кафедра</InputLabel>
+              <Select {...field} labelId="courseDepartment" label="Department">
+                <MenuItem value="кафедра лабораторної медицини">
+                  кафедра лабораторної медицини
+                </MenuItem>
+                <MenuItem value="кафедра дитячих хвороб">
+                  кафедра дитячих хвороб
+                </MenuItem>
+                <MenuItem value="кафедра анестезіології та інтенсивної терапії">
+                  кафедра анестезіології та інтенсивної терапії
+                </MenuItem>
+                <MenuItem value="кафедра акушерства та гінекології">
+                  кафедра акушерства та гінекології
+                </MenuItem>
+                <MenuItem value="кафедра загальної  практики-сімейної медицини та неврології ">
+                  кафедра загальної практики-сімейної медицини та неврології
+                </MenuItem>
+              </Select>
+            </FormControl>
           )}
         />
         <Box sx={{ display: 'flex', gap: 2, width: '100%', marginY: 2 }}>
