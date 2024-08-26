@@ -6,6 +6,7 @@ import {
   FormControl,
   Select,
   TextField,
+  FormHelperText,
 } from '@mui/material';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -24,6 +25,7 @@ export default function FormCreateCourses({ handleClose }) {
 
   const onSubmit = (data) => {
     console.log(data);
+
     handleClose();
   };
 
@@ -45,8 +47,17 @@ export default function FormCreateCourses({ handleClose }) {
           name="courseType"
           control={control}
           defaultValue=""
-          render={({ field }) => (
-            <FormControl variant="outlined" fullWidth margin="normal">
+          rules={{
+            required: 'Выберите тип курса',
+            validate: (value) => value !== '' || 'Выберите значение',
+          }}
+          render={({ field, fieldState: { error } }) => (
+            <FormControl
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              error={!!error}
+            >
               <InputLabel id="courseType">Тип курса</InputLabel>
               <Select {...field} labelId="courseType" label="Course Type">
                 <MenuItem value="Тематичне удосконалення">
@@ -54,9 +65,11 @@ export default function FormCreateCourses({ handleClose }) {
                 </MenuItem>
                 <MenuItem value="Спеціалізація">Спеціалізація</MenuItem>
               </Select>
+              {error && <FormHelperText>{error.message}</FormHelperText>}
             </FormControl>
           )}
         />
+
         <Controller
           name="courseName"
           control={control}
