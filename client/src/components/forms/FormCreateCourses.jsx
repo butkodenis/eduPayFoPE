@@ -11,18 +11,16 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
+import dayjs from 'dayjs';
+import 'dayjs/locale/uk';
+dayjs.locale('uk'); // use Ukrainian locale for dayjs
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useForm, Controller } from 'react-hook-form';
 
 export default function FormCreateCourses({ handleClose }) {
-  const { handleSubmit, control } = useForm({
-    defaultValues: {
-      age: '',
-    },
-  });
+  const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -30,7 +28,7 @@ export default function FormCreateCourses({ handleClose }) {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs} locale="uk">
       <Box
         component={'form'}
         onSubmit={handleSubmit(onSubmit)}
@@ -150,7 +148,7 @@ export default function FormCreateCourses({ handleClose }) {
           />
         </Box>
         <Button type="submit" variant="contained" color="primary">
-          Додати курс
+          Зберегти
         </Button>
         <ToastContainer />
       </Box>

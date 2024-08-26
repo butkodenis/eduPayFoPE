@@ -31,7 +31,7 @@ const Courses = () => {
       <h1>Courses</h1>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="contained" color="primary" onClick={handleOpen}>
-          Add Course
+          Додати курс
         </Button>
       </Box>
 
