@@ -1,14 +1,16 @@
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
+import {
+  Box,
+  Button,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  TextField,
+} from '@mui/material';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Button } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 
 export default function FormCreateCourses({ handleClose }) {
@@ -37,45 +39,79 @@ export default function FormCreateCourses({ handleClose }) {
       }}
     >
       <Controller
-        name="courseCode"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            label="Course Code"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-          />
-        )}
-      />
-      <Controller
-        name="courseDescription"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <TextField
-            {...field}
-            label="Course Description"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-          />
-        )}
-      />
-      <Controller
         name="courseType"
         control={control}
         defaultValue=""
         render={({ field }) => (
           <FormControl variant="outlined" fullWidth margin="normal">
-            <InputLabel id="courseType">Course Type</InputLabel>
+            <InputLabel id="courseType">Тип курса</InputLabel>
             <Select {...field} labelId="courseType" label="Course Type">
-              <MenuItem value="Undergraduate">Undergraduate</MenuItem>
-              <MenuItem value="Postgraduate">Postgraduate</MenuItem>
+              <MenuItem value="Тематичне удосконалення">
+                Тематичне удосконалення
+              </MenuItem>
+              <MenuItem value="Спеціалізація">Спеціалізація</MenuItem>
             </Select>
           </FormControl>
+        )}
+      />
+      <Controller
+        name="courseName"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Назва курсу"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+        )}
+      />
+      <Controller
+        name="coursePrice"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Вартість курсу"
+            variant="outlined"
+            type="number"
+            fullWidth
+            margin="normal"
+            inputProps={{ min: 0, step: 100 }}
+          />
+        )}
+      />
+      <Controller
+        name="coursePoints"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Бали"
+            variant="outlined"
+            type="number"
+            fullWidth
+            margin="normal"
+            inputProps={{ min: 0, step: 1 }}
+          />
+        )}
+      />
+      <Controller
+        name="courseDepartment"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Кафедра"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
         )}
       />
 
