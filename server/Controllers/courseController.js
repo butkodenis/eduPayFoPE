@@ -2,18 +2,24 @@ const Course = require('../Model/Courses');
 
 const createCourse = async (req, res) => {
   try {
-    const { typeCourse, name, duration, price, points, department, date_start, date_end } =
-      req.body;
-
+    const {
+      courseType,
+      courseName,
+      coursePrice,
+      coursePoints,
+      courseDepartment,
+      courseDateStart,
+      courseDateEnd,
+    } = req.body;
+    console.log(req.body);
     // Проверка на уникальность
     const existingCourse = await Course.findOne({
       where: {
-        typeCourse,
-        name,
-        duration,
-        price,
-        points,
-        department,
+        typeCourse: courseType,
+        name: courseName,
+        price: coursePrice,
+        points: coursePoints,
+        department: courseDepartment,
       },
     });
 
@@ -23,14 +29,13 @@ const createCourse = async (req, res) => {
 
     // Создание нового курса
     const newCourse = await Course.create({
-      typeCourse,
-      name,
-      duration,
-      price,
-      points,
-      department,
-      date_start,
-      date_end,
+      typeCourse: courseType,
+      name: courseName,
+      price: coursePrice,
+      points: coursePoints,
+      department: courseDepartment,
+      date_start: courseDateStart,
+      date_end: courseDateEnd,
     });
 
     res.status(201).json({ message: 'Курс успішно створений', course: newCourse });

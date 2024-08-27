@@ -15,9 +15,6 @@ const Course = sequelize.define(
     name: {
       type: DataTypes.STRING,
     },
-    duration: {
-      type: DataTypes.INTEGER,
-    },
     price: {
       type: DataTypes.INTEGER,
     },
