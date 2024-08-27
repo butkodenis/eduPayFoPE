@@ -15,18 +15,36 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/uk';
 dayjs.locale('uk'); // use Ukrainian locale for dayjs
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useForm, Controller } from 'react-hook-form';
+import axios from 'axios';
 
-export default function FormCreateCourses({ handleClose }) {
+const FormCreateCourses = ({ handleClose }) => {
   const { handleSubmit, control } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    data.courseName = data.courseName.replace(/"/g, '').trim();
+    data.courseDateStart = dayjs(data.courseDateStart).format('YYYY-MM-DD');
+    data.courseDateEnd = dayjs(data.courseDateEnd).format('YYYY-MM-DD');
     console.log(data);
-
-    handleClose();
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/course/create`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      toast.success(response.data.message);
+      handleClose();
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || 'Помилка при відправці даних на сервер'
+      );
+    }
   };
 
   return (
@@ -84,38 +102,40 @@ export default function FormCreateCourses({ handleClose }) {
             />
           )}
         />
-        <Controller
-          name="coursePrice"
-          control={control}
-          defaultValue=""
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Вартість курсу"
-              variant="outlined"
-              type="number"
-              fullWidth
-              margin="normal"
-              inputProps={{ min: 0, step: 100 }}
-            />
-          )}
-        />
-        <Controller
-          name="coursePoints"
-          control={control}
-          defaultValue=""
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Бали"
-              variant="outlined"
-              type="number"
-              fullWidth
-              margin="normal"
-              inputProps={{ min: 0, step: 1 }}
-            />
-          )}
-        />
+        <Box sx={{ display: 'flex', gap: 2, width: '100%', marginY: 1 }}>
+          <Controller
+            name="coursePrice"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Вартість курсу"
+                variant="outlined"
+                type="number"
+                fullWidth
+                margin="normal"
+                inputProps={{ min: 0, step: 50 }}
+              />
+            )}
+          />
+          <Controller
+            name="coursePoints"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Бали"
+                variant="outlined"
+                type="number"
+                fullWidth
+                margin="normal"
+                inputProps={{ min: 0, step: 1 }}
+              />
+            )}
+          />
+        </Box>
         <Controller
           name="courseDepartment"
           control={control}
@@ -180,4 +200,6 @@ export default function FormCreateCourses({ handleClose }) {
       </Box>
     </LocalizationProvider>
   );
-}
+};
+
+export default FormCreateCourses;
