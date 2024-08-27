@@ -1,48 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import useSWR from 'swr';
+import axios from 'axios';
+
+const fetcher = (url) =>
+  axios.get(url).then((response) => response.data.courses);
 
 const TableCourses = () => {
-  const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/courses`);
-        setCourses(response.data.courses);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    };
-
-    fetchCourses();
-  }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const { data: courses, error } = useSWR(
+    `${import.meta.env.VITE_BASE_URL}/api/courses`,
+    fetcher
+  );
 
   if (error) {
     return <p>{error.message}</p>;
+  }
+
+  if (!courses) {
+    return <p>Loading...</p>;
   }
 
   return (
     <table>
       <thead>
         <tr>
-          <th>Course ID</th>
           <th>Course Name</th>
-          <th>Course Description</th>
+          <th>Department</th>
+          <th>Price</th>
         </tr>
       </thead>
       <tbody>
         {courses.map((course) => (
           <tr key={course.id}>
-            <td>{course.id}</td>
             <td>{course.name}</td>
-            <td>{course.description}</td>
+            <td>{course.department}</td>
+            <td>{course.price}</td>
           </tr>
         ))}
       </tbody>

@@ -22,11 +22,6 @@ const Courses = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    handleClose();
-  };
-
   return (
     <div>
       <h1>Courses</h1>
