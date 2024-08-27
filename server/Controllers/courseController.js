@@ -11,7 +11,7 @@ const createCourse = async (req, res) => {
       courseDateStart,
       courseDateEnd,
     } = req.body;
-    console.log(req.body);
+
     // Проверка на уникальность
     const existingCourse = await Course.findOne({
       where: {

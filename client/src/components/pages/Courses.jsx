@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import FormCreateCourses from '../forms/FormCreateCourses';
+import TableCourses from '../tables/TableCourses';
 
 const Courses = () => {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,7 @@ const Courses = () => {
           Додати курс
         </Button>
       </Box>
-
+      <TableCourses />
       <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
