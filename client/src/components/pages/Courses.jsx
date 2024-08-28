@@ -23,8 +23,13 @@ const Courses = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <h1>Courses</h1>
+    <Box
+      sx={{
+        width: '100%',
+        padding: 2,
+      }}
+    >
+      <h1>Курси</h1>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="contained" color="primary" onClick={handleOpen}>
           Додати курс
@@ -50,7 +55,7 @@ const Courses = () => {
           <ToastContainer />
         </Box>
       </Modal>
-    </div>
+    </Box>
   );
 };
 
