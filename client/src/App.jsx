@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/pages/Layout';
 import Home from './components/pages/Home';
 import Students from './components/pages/Students';
-import Courses from './components/pages/Сourses';
+import Courses from './components/pages/Courses';
 import Balance from './components/pages/Balance';
 import Payments from './components/pages/Payments';
 import Company from './components/pages/Company';
