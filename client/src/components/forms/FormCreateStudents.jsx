@@ -179,7 +179,7 @@ const FormCreateStudents = ({ handleClose }) => {
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name="passportIssued"
+              name="passportLocation"
               control={control}
               defaultValue=""
               rules={{ required: "Це поле є обов'язковим" }}
