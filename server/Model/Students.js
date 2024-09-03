@@ -25,9 +25,9 @@ const Student = sequelize.define(
       type: DataTypes.STRING,
     },
     passportNumber: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
     },
-    passpotDate: {
+    passportDate: {
       type: DataTypes.DATEONLY,
     },
     passportLocation: {
