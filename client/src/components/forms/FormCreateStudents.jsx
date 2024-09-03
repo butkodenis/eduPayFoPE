@@ -3,6 +3,7 @@ import { Box, Button, Grid, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import axios from 'axios';
 
 import dayjs from 'dayjs';
 import 'dayjs/locale/uk';
@@ -18,8 +19,22 @@ const FormCreateStudents = ({ handleClose }) => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    toast.success('Студент успішно доданий!');
-    handleClose();
+    data.passportDate = dayjs(data.passportDate).format('YYYY-MM-DD');
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/student/create`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      toast.success(response.data.message);
+      handleClose();
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || 'Помилка при відправці даних на сервер'
+      );
+    }
   };
 
   return (

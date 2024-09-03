@@ -7,17 +7,17 @@ const createStudent = async (req, res) => {
       studentLastName,
       studentMiddleName,
       studentPhone,
-      passpotDate,
-      passpotSeries,
-      passpotNumber,
-      passpotLocation,
+      passportDate,
+      passportSeries,
+      passportNumber,
+      passportLocation,
     } = req.body;
 
     // Проверка на уникальность
     const existingStudent = await Student.findOne({
       where: {
-        passpotSeries,
-        passpotNumber,
+        passportSeries,
+        passportNumber,
       },
     });
 
@@ -30,10 +30,10 @@ const createStudent = async (req, res) => {
       lastName: studentLastName,
       middleName: studentMiddleName,
       phone: studentPhone,
-      passpotDate,
-      passpotSeries,
-      passpotNumber,
-      passpotLocation,
+      passportDate,
+      passportSeries,
+      passportNumber,
+      passportLocation,
     });
 
     res.status(201).json({ message: 'Студент успішно створений', student: newStudent });
