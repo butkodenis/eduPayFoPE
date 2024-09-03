@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Box, Typography, Button, Modal } from '@mui/material';
 
 import FormCreateStudents from '../forms/FormCreateStudents';
+import TableStudents from '../tables/TableStudents';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -35,6 +36,7 @@ const Students = () => {
           <FormCreateStudents handleClose={handleClose} />
         </Box>
       </Modal>
+      <TableStudents />
       <ToastContainer />
     </Box>
   );
