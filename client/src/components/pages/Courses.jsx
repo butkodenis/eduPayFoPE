@@ -23,12 +23,7 @@ const Courses = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        padding: 2,
-      }}
-    >
+    <Box>
       <h1>Курси</h1>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="contained" color="primary" onClick={handleOpen}>

@@ -13,9 +13,6 @@ import {
   ListItemIcon,
   Toolbar,
   Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
 } from '@mui/material';
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -51,79 +48,76 @@ const Sidebar = () => {
   };
 
   return (
-    <Toolbar>
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: 240,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: 240,
-            boxSizing: 'border-box',
-            backgroundColor: '#f5f5f5',
-          },
-        }}
-      >
-        <Box sx={{ my: 4, textAlign: 'center' }}>
-          <Typography variant="body1">
-            {' '}
-            Запорізький державний медико-фармацевтичний університет
-          </Typography>
-        </Box>
+    <Box
+      sx={{
+        width: 250,
+        height: '100vh',
+        backgroundColor: '#eceff1',
+        position: 'fixed', // фиксируем боковое меню
+        left: 0, // задаём левую границу
+        top: 0, // отступ сверху
+      }}
+    >
+      {/* Содержимое бокового меню */}
+      <Box sx={{ my: 4, textAlign: 'center' }}>
+        <Typography variant="body1">
+          {' '}
+          Запорізький державний медико-фармацевтичний університет
+        </Typography>
+      </Box>
 
-        <List>
-          <ListItem button component={Link} to="/">
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem button component={Link} to="/students">
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Студенти" />
-          </ListItem>
-          <ListItem button component={Link} to="/courses">
-            <ListItemIcon>
-              <MenuBookIcon />
-            </ListItemIcon>
-            <ListItemText primary="Курси" />
-          </ListItem>
-          <ListItem button component={Link} to="/company">
-            <ListItemIcon>
-              <ApartmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Юр. лица" />
-          </ListItem>
-          <ListItem button component={Link} to="/contract">
-            <ListItemIcon>
-              <ArticleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Договоры" />
-          </ListItem>
+      <List>
+        <ListItem button component={Link} to="/">
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItem>
+        <ListItem button component={Link} to="/students">
+          <ListItemIcon>
+            <PeopleIcon />
+          </ListItemIcon>
+          <ListItemText primary="Студенти" />
+        </ListItem>
+        <ListItem button component={Link} to="/courses">
+          <ListItemIcon>
+            <MenuBookIcon />
+          </ListItemIcon>
+          <ListItemText primary="Курси" />
+        </ListItem>
+        <ListItem button component={Link} to="/company">
+          <ListItemIcon>
+            <ApartmentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Юр. лица" />
+        </ListItem>
+        <ListItem button component={Link} to="/contract">
+          <ListItemIcon>
+            <ArticleIcon />
+          </ListItemIcon>
+          <ListItemText primary="Договоры" />
+        </ListItem>
 
-          <Divider />
-          <ListItem button component={Link} to="/balance">
-            <ListItemIcon>
-              <AccountBalanceIcon />
-            </ListItemIcon>
-            <ListItemText primary="Баланс" />
-          </ListItem>
-          <ListItem button component={Link} to="/payments">
-            <ListItemIcon>
-              <PaymentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Плетежи" />
-          </ListItem>
-        </List>
-        <Box sx={{ mt: 'auto', mb: 2, textAlign: 'center' }}>
-          <Button variant="contained" color="primary" onClick={handleLogout}>
-            Выйти
-          </Button>
-        </Box>
-      </Drawer>
-    </Toolbar>
+        <Divider />
+        <ListItem button component={Link} to="/balance">
+          <ListItemIcon>
+            <AccountBalanceIcon />
+          </ListItemIcon>
+          <ListItemText primary="Баланс" />
+        </ListItem>
+        <ListItem button component={Link} to="/payments">
+          <ListItemIcon>
+            <PaymentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Плетежи" />
+        </ListItem>
+      </List>
+      <Box sx={{ mt: 'auto', mb: 2, textAlign: 'center' }}>
+        <Button variant="contained" color="primary" onClick={handleLogout}>
+          Выйти
+        </Button>
+      </Box>
+    </Box>
   );
 };
 

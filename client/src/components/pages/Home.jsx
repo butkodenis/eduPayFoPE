@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 
 const Home = () => {
   return (
-    <Box sx={{ my: 4 }}>
+    <Box>
       <h1>Home</h1>
       <p>Welcome to the home page!</p>
       <Typography paragraph>

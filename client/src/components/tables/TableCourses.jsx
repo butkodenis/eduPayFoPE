@@ -45,7 +45,7 @@ const TableCourses = () => {
   }));
 
   return (
-    <Box sx={{ padding: 4, width: '100%' }}>
+    <Box sx={{ width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
