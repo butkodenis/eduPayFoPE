@@ -56,7 +56,7 @@ const TableStudents = () => {
   }));
 
   return (
-    <div>
+    <div style={{ height: 750, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}

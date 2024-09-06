@@ -17,6 +17,7 @@ const Layout = () => {
           flexGrow: 1,
           marginLeft: '250px', // добавляем отступ для основного контента
           padding: 2,
+          overflow: 'auto',
         }}
       >
         {/* Содержимое основного контента */}
