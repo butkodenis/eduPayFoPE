@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Typography, Button, Modal } from '@mui/material';
+import { Box, Typography, Button, Modal, Grid } from '@mui/material';
 
 import FormCreateStudents from '../forms/FormCreateStudents';
 import TableStudents from '../tables/TableStudents';
@@ -18,10 +18,28 @@ const Students = () => {
         width: '100%',
       }}
     >
-      <h1>Студенти</h1>
-      <Button variant="contained" color="primary" onClick={handleOpen}>
-        Додати студента
-      </Button>
+      <Grid container>
+        <Grid item xs={12} sm={12} md={12}>
+          <Typography variant="h4" gutterBottom>
+            Студенти
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={4}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleOpen}
+            size="small"
+          >
+            Додати студента
+          </Button>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} sm={12} md={12}>
+        <TableStudents />
+      </Grid>
+
       <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
@@ -36,7 +54,7 @@ const Students = () => {
           <FormCreateStudents handleClose={handleClose} />
         </Box>
       </Modal>
-      <TableStudents />
+
       <ToastContainer />
     </Box>
   );

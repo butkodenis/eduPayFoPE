@@ -38,7 +38,7 @@ const FormCreateStudents = ({ handleClose }) => {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} locale="uk">
+    <LocalizationProvider dateAdapter={AdapterDayjs} locale="ukr">
       <Box
         component="form"
         sx={{
@@ -166,13 +166,21 @@ const FormCreateStudents = ({ handleClose }) => {
               control={control}
               defaultValue={null}
               rules={{ required: "Це поле є обов'язковим" }}
-              render={({ field }) => (
+              render={({ field, fieldState: { error } }) => (
                 <DatePicker
                   {...field}
                   label="Дата видачі паспорту"
-                  inputFormat="DD.MM.YYYY"
-                  clearable
-                  renderInput={(params) => <TextField {...params} fullWidth />}
+                  format="DD.MM.YYYY" // Set the desired format
+                  variant="outlined"
+                  fullWidth
+                  value={field.value ? dayjs(field.value) : null}
+                  onChange={(date) =>
+                    field.onChange(
+                      date ? dayjs(date).format('YYYY-MM-DD') : null
+                    )
+                  }
+                  error={!!error}
+                  helperText={error ? error.message : null}
                 />
               )}
             />

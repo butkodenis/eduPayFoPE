@@ -8,16 +8,14 @@ import TableTest from '../tables/TableTest';
 const Layout = () => {
   return (
     <Box sx={{ display: 'flex' }}>
-      {/* Боковое меню */}
       <Sidebar />
 
-      {/* Основной контент */}
       <Box
         sx={{
-          flexGrow: 1,
+          flexGrow: 1, // добавляем растягивание основного контента
           marginLeft: '250px', // добавляем отступ для основного контента
-          padding: 2,
-          overflow: 'auto',
+          padding: 2, // добавляем внутренний отступ для основного контента
+          overflow: 'auto', // добавляем прокрутку для основного контента
         }}
       >
         {/* Содержимое основного контента */}
