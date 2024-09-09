@@ -1,8 +1,11 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
-
 import useSWR from 'swr';
 import axios from 'axios';
+import { Button, IconButton } from '@mui/material';
+
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
 const TableStudents = () => {
   const fetcher = (url) => axios.get(url).then((res) => res.data.students);
@@ -37,6 +40,16 @@ const TableStudents = () => {
     studentPassportLocation: student.passportLocation,
   }));
 
+  const handleEdit = (id) => {
+    console.log(`Edit student with id ${id}`);
+    // Здесь можно добавить логику для редактирования
+  };
+
+  const handleDelete = (id) => {
+    console.log(`Delete student with id ${id}`);
+    // Здесь можно добавить логику для удаления
+  };
+
   const columns = [
     { field: 'studentFirstName', headerName: "Ім'я", width: 150 },
     { field: 'studentLastName', headerName: 'Прізвище', width: 150 },
@@ -56,7 +69,26 @@ const TableStudents = () => {
     {
       field: 'actions',
       headerName: 'Дії',
-      width: 150,
+      width: 300,
+      renderCell: (params) => (
+        <>
+          <IconButton
+            color="primary"
+            size="small"
+            onClick={() => handleEdit(params.row.id)}
+            style={{ marginRight: 8 }}
+          >
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            color="secondary"
+            size="small"
+            onClick={() => handleDelete(params.row.id)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </>
+      ),
     },
   ];
 
@@ -66,6 +98,7 @@ const TableStudents = () => {
         rows={rows}
         columns={columns}
         checkboxSelection
+        disableRowSelectionOnClick
         pagination
         pageSizeOptions={[10, 25, 50]}
         paginationModel={paginationModel}
