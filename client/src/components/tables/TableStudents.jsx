@@ -42,7 +42,8 @@ const TableStudents = () => {
     studentLastName: student.lastName,
     studentMiddleName: student.middleName,
     studentPhone: student.phone,
-    studentPassportSeriesAndNumber: `${student.passportSeries} ${student.passportNumber}`,
+    studentPassportSeries: student.passportSeries,
+    studentPassportNumber: student.passportNumber,
     studentPassportDate: student.passportDate,
     studentPassportLocation: student.passportLocation,
   }));
@@ -64,8 +65,13 @@ const TableStudents = () => {
     { field: 'studentLastName', headerName: 'Прізвище', width: 150 },
     { field: 'studentMiddleName', headerName: 'По-батькові', width: 150 },
     {
-      field: 'studentPassportSeriesAndNumber',
-      headerName: 'Серія та номер паспорта',
+      field: 'studentPassportSeries',
+      headerName: 'Серія паспорта',
+      width: 100,
+    },
+    {
+      field: 'studentPassportNumber',
+      headerName: 'Номер паспорта',
       width: 100,
     },
     { field: 'studentPassportDate', headerName: 'Дата видачі', width: 100 },
