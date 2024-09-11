@@ -8,9 +8,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Students = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
 
   return (
     <Box
@@ -29,7 +29,7 @@ const Students = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={handleOpen}
+            onClick={handleOpenModal}
             size="small"
           >
             Додати студента
@@ -40,7 +40,7 @@ const Students = () => {
         <TableStudents />
       </Grid>
 
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={openModal} onClose={handleCloseModal}>
         <Box
           sx={{
             position: 'absolute',
@@ -51,7 +51,7 @@ const Students = () => {
             bgcolor: 'background.paper',
           }}
         >
-          <FormCreateStudents handleClose={handleClose} />
+          <FormCreateStudents handleCloseModal={handleCloseModal} />
         </Box>
       </Modal>
 

@@ -14,7 +14,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const FormCreateStudents = ({ handleClose }) => {
+const FormCreateStudents = ({ handleCloseModal }) => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = async (data) => {
@@ -29,7 +29,7 @@ const FormCreateStudents = ({ handleClose }) => {
         }
       );
       toast.success(response.data.message);
-      handleClose();
+      handleCloseModal();
     } catch (error) {
       toast.error(
         error.response?.data?.message || 'Помилка при відправці даних на сервер'

@@ -2,18 +2,25 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton, Box, Modal } from '@mui/material';
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
-const TableStudents = () => {
-  const fetcher = (url) => axios.get(url).then((res) => res.data.students);
+import FormStudents from '../forms/FormStudents';
 
+const TableStudents = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState(null);
   const [paginationModel, setPaginationModel] = useState({
     pageSize: 10,
     page: 0,
   });
+
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
+  const fetcher = (url) => axios.get(url).then((res) => res.data.students);
 
   const { data: students, error } = useSWR(
     `${import.meta.env.VITE_BASE_URL}/api/students`,
@@ -40,9 +47,11 @@ const TableStudents = () => {
     studentPassportLocation: student.passportLocation,
   }));
 
-  const handleEdit = (id) => {
-    console.log(`Edit student with id ${id}`);
+  const handleEdit = (student) => {
+    console.log('Edit student:', student);
+    setSelectedStudent(student);
     // Здесь можно добавить логику для редактирования
+    setOpenModal(true);
   };
 
   const handleDelete = (id) => {
@@ -75,7 +84,7 @@ const TableStudents = () => {
           <IconButton
             color="primary"
             size="small"
-            onClick={() => handleEdit(params.row.id)}
+            onClick={() => handleEdit(params.row)}
             style={{ marginRight: 8 }}
           >
             <EditIcon />
@@ -104,6 +113,19 @@ const TableStudents = () => {
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
       />
+      <Modal open={openModal} onClose={handleCloseModal}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'background.paper',
+          }}
+        >
+          <FormStudents studentData={selectedStudent} isEditMode />
+        </Box>
+      </Modal>
     </div>
   );
 };
