@@ -13,7 +13,11 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-const FormStudents = ({ studentData = {}, isEditMode = false }) => {
+const FormStudents = ({
+  studentData = {},
+  isEditMode = false,
+  handleCloseModal,
+}) => {
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       studentFirstName: studentData.studentFirstName || '',
@@ -22,13 +26,42 @@ const FormStudents = ({ studentData = {}, isEditMode = false }) => {
       studentPhone: studentData.studentPhone || '',
       passportSeries: studentData.studentPassportSeries || '',
       passportNumber: studentData.studentPassportNumber || '',
-      passportDate: studentData.passportDate || null,
+      passportDate: studentData.studentPassportDate || null,
       passportLocation: studentData.studentPassportLocation || '',
     },
   });
 
   const onSubmit = async (data) => {
     console.log(data);
+
+    try {
+      if (isEditMode) {
+        const response = await axios.put(
+          `${import.meta.env.VITE_BASE_URL}/api/student/update/${studentData.id}`,
+          data,
+          {
+            withCredentials: true,
+          }
+        );
+        toast.success(response.data.message);
+        handleCloseModal();
+      } else {
+        const response = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}/api/student/create`,
+          data,
+          {
+            withCredentials: true,
+          }
+        );
+        toast.success(response.data.message);
+
+        handleCloseModal();
+      }
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || 'Помилка при відправці даних на сервер'
+      );
+    }
   };
 
   return (

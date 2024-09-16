@@ -34,7 +34,7 @@ const TableStudents = () => {
     return <p>Loading...</p>;
   }
 
-  console.log(students);
+  // console.log(students);
 
   const rows = students.map((student) => ({
     id: student.id,
@@ -129,7 +129,11 @@ const TableStudents = () => {
             bgcolor: 'background.paper',
           }}
         >
-          <FormStudents studentData={selectedStudent} isEditMode />
+          <FormStudents
+            studentData={selectedStudent}
+            isEditMode
+            handleCloseModal={handleCloseModal}
+          />
         </Box>
       </Modal>
     </div>
