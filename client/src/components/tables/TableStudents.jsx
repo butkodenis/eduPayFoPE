@@ -73,8 +73,8 @@ const TableStudents = () => {
   };
 
   const columns = [
-    { field: 'studentFirstName', headerName: "Ім'я", width: 150 },
     { field: 'studentLastName', headerName: 'Прізвище', width: 150 },
+    { field: 'studentFirstName', headerName: "Ім'я", width: 150 },
     { field: 'studentMiddleName', headerName: 'По-батькові', width: 150 },
     {
       field: 'studentPassportSeries',
