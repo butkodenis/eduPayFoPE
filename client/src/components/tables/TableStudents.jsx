@@ -1,6 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
+
 import axios from 'axios';
 import { Button, IconButton, Box, Modal } from '@mui/material';
 
@@ -55,9 +56,20 @@ const TableStudents = () => {
     setOpenModal(true);
   };
 
-  const handleDelete = (id) => {
-    console.log(`Delete student with id ${id}`);
-    // Здесь можно добавить логику для удаления
+  const handleDelete = async (id) => {
+    try {
+      // Отправляем DELETE-запрос на сервер для удаления студента
+      await axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/api/student/delete/${id}`
+      );
+
+      // После удаления обновляем данные
+      mutate(`${import.meta.env.VITE_BASE_URL}/api/students`);
+
+      console.log(`Student with id ${id} deleted`);
+    } catch (error) {
+      console.error('Error deleting student:', error);
+    }
   };
 
   const columns = [
@@ -118,6 +130,11 @@ const TableStudents = () => {
         pageSizeOptions={[10, 25, 50]}
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
+        initialState={{
+          sorting: {
+            sortModel: [{ field: 'studentLastName', sort: 'asc' }],
+          },
+        }}
       />
       <Modal open={openModal} onClose={handleCloseModal}>
         <Box

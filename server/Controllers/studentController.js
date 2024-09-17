@@ -67,12 +67,26 @@ const editStudent = async (req, res) => {
       passportLocation,
     } = req.body;
 
+    // Проверка на существование студента
     const student = await Student.findByPk(id);
 
     if (!student) {
       return res.status(404).json({ message: 'Студент не знайдений' });
     }
 
+    const existingStudent = await Student.findOne({
+      where: {
+        passportSeries,
+        passportNumber,
+        id: { [Op.not]: id },
+      },
+    });
+
+    if (existingStudent) {
+      return res.status(409).json({ message: 'Студент з такими паспортом вже існує' });
+    }
+
+    // Обновление данных студента
     student.firstName = studentFirstName;
     student.lastName = studentLastName;
     student.middleName = studentMiddleName;
@@ -91,4 +105,23 @@ const editStudent = async (req, res) => {
   }
 };
 
-module.exports = { createStudent, getAllStudents, editStudent };
+const deleteStudent = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(404).json({ message: 'Студент не знайдений' });
+    }
+
+    await student.destroy();
+
+    res.status(200).json({ message: 'Студент успішно видалений' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createStudent, getAllStudents, editStudent, deleteStudent };
