@@ -7,6 +7,7 @@ require('dotenv').config();
 const Users = require('./Model/Users'); // Подключение модели пользователя
 const Course = require('./Model/Courses'); // Подключение модели курса
 const Student = require('./Model/Students'); // Подключение модели студента
+const Contract = require('./Model/Contracts'); // Подключение модели контракта
 
 const sequelize = require('./DB/db'); // Подключение к базе данных
 
@@ -29,6 +30,7 @@ app.use('/api', require('./Routers/userRouter'));
 app.use('/api', require('./Routers/authRoutes'));
 app.use('/api', require('./Routers/courseRouter'));
 app.use('/api', require('./Routers/studentRouter'));
+app.use('/api', require('./Routers/contractRouter'));
 
 app.listen(NODE_PORT, () => {
   console.log(`Сервер запущен на порту ${NODE_PORT}`);
