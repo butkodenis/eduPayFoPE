@@ -14,7 +14,7 @@ const TableStudents = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [paginationModel, setPaginationModel] = useState({
-    pageSize: 10,
+    pageSize: 20,
     page: 0,
   });
 
@@ -124,10 +124,11 @@ const TableStudents = () => {
       <DataGrid
         rows={rows}
         columns={columns}
+        rowHeight={32}
         checkboxSelection
         disableRowSelectionOnClick
         pagination
-        pageSizeOptions={[10, 25, 50]}
+        pageSizeOptions={[10, 20, 50]}
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
         initialState={{
